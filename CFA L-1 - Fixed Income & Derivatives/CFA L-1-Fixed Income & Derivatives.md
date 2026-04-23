@@ -5,149 +5,186 @@
 
 ## Overview
 
-This repository provides structured and concept-driven notes for the Chartered Financial Analyst (CFA) Level 1 curriculum, focusing on Fixed Income and Derivatives. The material is designed not only for theoretical understanding but also for developing strong analytical and problem-solving skills through mathematical modeling.
-
-The content integrates financial intuition with rigorous quantitative frameworks, enabling a deeper understanding of how debt markets and derivative instruments are priced, analyzed, and used in practice.
+This repository provides structured and concept-driven notes for the Chartered Financial Analyst (CFA) Level 1 curriculum, focusing on Fixed Income and Derivatives. The material is designed not only for theoretical understanding but also for developing strong analytical and problem-solving skills through mathematical modeling. The content integrates financial intuition with rigorous quantitative frameworks, enabling a deeper understanding of how debt markets and derivative instruments are priced, analyzed, and used in practice.
 
 ---
 
 ## Fixed Income
 
-Fixed Income forms the backbone of global financial markets. This section develops a strong foundation in bond valuation, interest rate dynamics, and credit risk analysis.
+Fixed Income forms the backbone of global financial markets and focuses on valuation, interest rate behavior, and credit risk.
+
+---
 
 ### Bond Pricing and Valuation
 
-The value of a bond is the present value of its future cash flows:
+The value of a bond is the present value of all future cash flows:
 
-P = Σ [ C / (1 + y)^t ] + FV / (1 + y)^N
+$$
+P = \sum_{t=1}^{N} \frac{C}{(1 + y)^t} + \frac{FV}{(1 + y)^N}
+$$
 
 Where:
-- C = Coupon payment  
-- y = Yield to maturity  
-- FV = Face value  
+- \( P \) = Bond price  
+- \( C \) = Coupon payment  
+- \( y \) = Yield to maturity  
+- \( FV \) = Face value  
+- \( N \) = Number of periods  
 
-This formulation establishes the fundamental inverse relationship between price and yield.
+---
 
 ### Yield Measures
 
-Effective annual yield accounts for compounding effects:
+Effective Annual Yield:
 
-EAY = (1 + y/n)^n - 1
+$$
+EAY = \left(1 + \frac{y}{n}\right)^n - 1
+$$
 
-Yield spreads measure relative risk:
+Yield Spread:
 
-Spread = y_bond - y_benchmark
+$$
+\text{Spread} = y_{\text{bond}} - y_{\text{benchmark}}
+$$
 
-These are critical for comparing bonds across issuers and markets.
+---
 
 ### Term Structure of Interest Rates
 
-Spot rates are used to discount individual cash flows:
+Spot rate pricing:
 
-P = Σ [ CF_t / (1 + S_t)^t ]
+$$
+P = \sum_{t=1}^{N} \frac{CF_t}{(1 + S_t)^t}
+$$
 
-Forward rates are derived from spot rates:
+Forward rate:
 
-f(1,1) = [(1 + S2)^2 / (1 + S1)] - 1
+$$
+f_{1,1} = \frac{(1 + S_2)^2}{(1 + S_1)} - 1
+$$
 
-These relationships define the yield curve and expectations of future interest rates.
+---
 
 ### Duration and Interest Rate Risk
 
-Duration measures sensitivity of bond prices to interest rate changes:
+Modified Duration:
 
-ModDur = MacDur / (1 + y)
+$$
+\text{ModDur} = \frac{\text{MacDur}}{1 + y}
+$$
 
-Approximate price change:
+Price sensitivity:
 
-ΔP / P ≈ -ModDur × Δy
+$$
+\frac{\Delta P}{P} \approx -\text{ModDur} \cdot \Delta y
+$$
 
-This is a first-order approximation of interest rate risk.
+---
 
 ### Convexity Adjustment
 
-To improve accuracy:
+Second-order approximation:
 
-ΔP / P ≈ -ModDur × Δy + (1/2) × C × (Δy)^2
+$$
+\frac{\Delta P}{P} \approx -\text{ModDur} \cdot \Delta y + \frac{1}{2} \cdot \text{Convexity} \cdot (\Delta y)^2
+$$
 
-Convexity captures the curvature in the price-yield relationship.
+---
 
 ### Credit Risk Modeling
 
-Expected loss is modeled as:
+Expected Loss:
 
-EL = PD × LGD
+$$
+EL = PD \times LGD
+$$
 
 Where:
-- PD = Probability of default  
-- LGD = Loss given default  
+- \( PD \) = Probability of Default  
+- \( LGD \) = Loss Given Default  
 
-This framework explains credit spreads and risk premiums.
+---
 
 ### Securitization
 
-Asset-backed securities transform illiquid assets into tradable instruments.
+Asset-backed securities redistribute risk through tranching:
 
-Cash flow structure is modeled through tranching:
-
-- Senior tranches → low risk, low return  
-- Junior tranches → high risk, high return  
-
-This enables risk redistribution across investors.
+- Senior tranche → Low risk, low return  
+- Mezzanine tranche → Medium risk, medium return  
+- Equity tranche → High risk, high return  
 
 ---
 
 ## Derivatives
 
-Derivatives are financial instruments whose value is derived from an underlying asset. They are essential for hedging, speculation, and arbitrage.
+Derivatives derive their value from an underlying asset and are used for hedging, speculation, and arbitrage.
+
+---
 
 ### Forward and Futures Pricing
 
 Forward price under no-arbitrage:
 
-F0(T) = S0 (1 + r)^T
+$$
+F_0(T) = S_0 (1 + r)^T
+$$
 
 With cost of carry:
 
-F0(T) = S0 e^(r + c - b)T
+$$
+F_0(T) = S_0 e^{(r + c - b)T}
+$$
 
-These models ensure arbitrage-free pricing.
+---
 
 ### Forward Valuation
 
-Value of a forward during its life:
+Value of a forward contract:
 
-Vt = St - F0(T)(1 + r)^-(T - t)
+$$
+V_t = S_t - F_0(T)(1 + r)^{-(T - t)}
+$$
 
-This determines profit or loss before maturity.
+---
 
 ### Option Payoffs
 
-Call and put option payoffs:
+Call option payoff:
 
-cT = max(0, ST - X)
+$$
+c_T = \max(0, S_T - X)
+$$
 
-pT = max(0, X - ST)
+Put option payoff:
 
-These define nonlinear payoff structures.
+$$
+p_T = \max(0, X - S_T)
+$$
+
+---
 
 ### Put-Call Parity
 
-A fundamental arbitrage relationship:
+Fundamental arbitrage relationship:
 
-c0 + X(1 + r)^(-T) = S0 + p0
+$$
+c_0 + X(1 + r)^{-T} = S_0 + p_0
+$$
 
-This enables construction of synthetic positions.
+---
 
 ### Binomial Option Pricing
 
-Option valuation using risk-neutral probability:
+Risk-neutral probability:
 
-π = (1 + r - d) / (u - d)
+$$
+\pi = \frac{1 + r - d}{u - d}
+$$
 
-c0 = [πc+ + (1 - π)c-] / (1 + r)
+Option valuation:
 
-This discrete-time model forms the basis for more advanced pricing methods.
+$$
+c_0 = \frac{\pi c^{+} + (1 - \pi)c^{-}}{1 + r}
+$$
 
 ---
 
@@ -156,8 +193,8 @@ This discrete-time model forms the basis for more advanced pricing methods.
 - Structured notes aligned with CFA Level 1 curriculum  
 - Strong integration of financial theory and mathematical modeling  
 - Emphasis on intuition behind formulas  
-- Clear separation of fixed income and derivatives concepts  
-- Useful for both first-time learning and revision  
+- Clean separation of fixed income and derivatives concepts  
+- Suitable for both learning and revision  
 
 ---
 
@@ -173,19 +210,19 @@ This discrete-time model forms the basis for more advanced pricing methods.
 
 ## How to Use
 
-1. Study each concept along with its mathematical formulation  
-2. Focus on understanding relationships between variables  
+1. Study each concept alongside its mathematical formulation  
+2. Focus on relationships between variables  
 3. Practice applying formulas to numerical problems  
-4. Use as a revision guide before exams  
+4. Use this as a revision guide before exams  
 
 ---
 
 ## Future Improvements
 
-- Inclusion of solved numerical examples  
-- Case studies on bond markets and derivatives  
-- Implementation of pricing models in Python/MATLAB  
-- Visualization of yield curves and payoff diagrams  
+- Addition of solved numerical problems  
+- Case-based applications  
+- Python/MATLAB implementations  
+- Visualization of yield curves and payoff structures  
 
 ---
 
